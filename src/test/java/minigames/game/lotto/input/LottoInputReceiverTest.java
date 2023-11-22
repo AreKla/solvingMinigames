@@ -8,9 +8,12 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import minigames.game.lotto.exception.NotANumberException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoInputReceiverTest {
 
@@ -50,6 +53,19 @@ class LottoInputReceiverTest {
         final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(scanner);
         // then
         assertThat(expectedNumbers).isEqualTo(userInputNumbers);
+    }
+
+    @Test
+    void shouldThrowNotANumberExceptionWhenUserGivenNotNumber() {
+        //given
+        String given = "xyz";
+        Scanner scanner = mockScannerIn(given);
+        //when
+        NotANumberException exception = assertThrows(NotANumberException.class, () -> {
+            lottoInputReceiver.getSixNumbers(scanner);
+        });
+        //then
+        assertEquals("Not a number was given", exception.getMessage());
     }
 
     private Scanner mockScannerIn(String data) {

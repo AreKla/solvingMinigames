@@ -8,11 +8,11 @@ import minigames.game.Game;
 import minigames.game.lotto.input.LottoInputReceiver;
 import minigames.game.lotto.logic.LottoHitNumberCalculator;
 import minigames.game.lotto.logic.LottoRandomGenerator;
-import minigames.game.lotto.messageprovider.LottoMessageProvider;
+import minigames.game.lotto.input.messageprovider.LottoMessageProvider;
 import minigames.model.GameResult;
 import minigames.model.GameResultInfo;
 
-import static minigames.game.lotto.messageprovider.LottoMessageProvider.GAME_NAME;
+import static minigames.game.lotto.input.messageprovider.LottoMessageProvider.GAME_NAME;
 
 @Data
 public class LottoGame implements Game {

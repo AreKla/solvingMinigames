@@ -3,7 +3,7 @@ package minigames.game.lotto.model;
 import java.util.Set;
 
 import lombok.Data;
-import minigames.game.lotto.messageprovider.LottoMessageProvider;
+import minigames.game.lotto.input.messageprovider.LottoMessageProvider;
 import minigames.model.GameResultInfo;
 
 @Data

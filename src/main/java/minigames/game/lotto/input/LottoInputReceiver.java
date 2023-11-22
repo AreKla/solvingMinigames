@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import minigames.game.lotto.messageprovider.LottoMessageProvider;
+import minigames.game.lotto.exception.NotANumberException;
+import minigames.game.lotto.input.messageprovider.LottoMessageProvider;
 
 import static minigames.game.lotto.config.LottoGameConfiguration.HOW_MANY_NUMBERS_FROM_USER;
 import static minigames.game.lotto.config.LottoGameConfiguration.LOWER_BOUND;
@@ -24,10 +25,14 @@ public class LottoInputReceiver {
         System.out.println(String.format(LottoMessageProvider.PLEASE_GIVE_NUMBERS, HOW_MANY_NUMBERS_FROM_USER));
         while (areLessThanSixNumbersGiven(givenNumbers)) {
             System.out.println(LottoMessageProvider.GIVE_NUMBER);
-            while (!in.hasNextInt()) {
+            if (!in.hasNextInt()) {
                 System.out.printf(LottoMessageProvider.NOT_IN_RANGE, LOWER_BOUND, UPPER_BOUND);
                 if (!in.hasNext()) {
                     return Collections.emptySet();
+                }
+                String input = in.next();
+                if (!input.matches("-?[1-9]\\d*|0")) {
+                    throw new NotANumberException("Not a number was given");
                 }
             }
             final int userInput = in.nextInt();
