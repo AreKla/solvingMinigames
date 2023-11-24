@@ -2,16 +2,12 @@ package minigames.game.lotto.model;
 
 import java.util.Set;
 
-import lombok.Data;
 import minigames.game.lotto.input.messageprovider.LottoMessageProvider;
 import minigames.model.GameResultInfo;
 
-@Data
-public class LottoGameResultInfo implements GameResultInfo {
-
-    private final Set<Integer> userGivenNumbers;
-    private final Set<Integer> randomSixNumbers;
-    private final Set<Integer> finalHitNumbers;
+public record LottoGameResultInfo(Set<Integer> userGivenNumbers,
+                                  Set<Integer> randomSixNumbers,
+                                  Set<Integer> finalHitNumbers) implements GameResultInfo {
 
     @Override
     public String getGameResultMessage() {
